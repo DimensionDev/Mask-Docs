@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Mask Docs',
   tagline: 'Your Portal to the New, Open Internet.',
-  url: "https://dimensiondev.github.io",
-  baseUrl: "/Mask-Docs/",
+  url: 'https://docs.mask.io',
+  baseUrl: process.env.NODE_EVN === 'development' ? '/Mask-Docs/' : '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -59,9 +59,9 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'overview',
             position: 'left',
-            label: 'Tutorial',
+            label: 'Docs',
           },
           {
             href: 'https://github.com/DimensionDev/Maskbook',
@@ -77,8 +77,8 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Docs',
+                to: '/docs/overview',
               },
             ],
           },
