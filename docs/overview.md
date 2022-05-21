@@ -1,5 +1,8 @@
 ---
-sidebar_position: 1
+id: overview
+slig: /
+title: Overview
+sidebar_position: 0
 ---
 
 # Tutorial Intro
