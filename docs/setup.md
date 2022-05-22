@@ -1,8 +1,7 @@
 ---
 id: setup
-slug: /
 title: Setup
-sidebar_position: 10
+sidebar_position: 0
 ---
 
 # Setup
@@ -19,11 +18,7 @@ We suggest you to use the latest Node.js version, and enable [corepack](https://
 
 ### pnpm
 
-The [pnpm](https://pnpm.io/) is a disk space-efficient package manager. After NodeJS is preinstalled.
-
-If you have [corepack](https://nodejs.org/api/corepack.html) enabled, you can skip the `pnpm` section, `pnpm` is already available!
-
-If you want to setup pnpm manually, here is the [installation guide from pnpm](https://pnpm.io/installation).
+The [pnpm](https://pnpm.io/) is a disk space-efficient package manager. After NodeJS is preinstalled. If you have [corepack](https://nodejs.org/api/corepack.html) enabled, you can skip the `pnpm` section, `pnpm` is already available! If you want to setup pnpm manually, here is the [installation guide from pnpm](https://pnpm.io/installation).
 
 Now, you will need to have tools installed to start development.
 
@@ -31,7 +26,9 @@ Now, you will need to have tools installed to start development.
 pnpm install
 ```
 
-> If you encounter with error `EACCES: permission denied, open...'`, please run `chown -R $USER /pathToYourProject/Mask` to solve.
+:::info
+If you encounter with error `EACCES: permission denied, open...'`, please run `chown -R $USER /pathToYourProject/Mask` to solve.
+:::
 
 ### Start the local development server
 
@@ -72,11 +69,7 @@ To debug _background service_, click links right after **Inspect views**.
 
 ### Debug the content script
 
-Mask Network only injects content script with permission from the user.
-
-For every new website that Mask Network is going to support, it will show a prompt dialog to ask permission dynamically, rather than asking for all permission when the plugin is installed.
-
-![An image displaying the Mask Network is asking the permission from the user](https://user-images.githubusercontent.com/52657989/158566232-30c52a17-0168-488c-a292-4fc4059ecb9c.png)
+Mask Network only injects content script with permission from the user. For every new website that Mask Network is going to support, it will show a prompt dialog to ask permission dynamically, rather than asking for all permission when the plugin is installed.
 
 To debug _content script_, open the dev tools in the web page, then you can select context as the following picture describes.
 
@@ -90,11 +83,15 @@ _save as temp variables_ also fails.
 
 Run the following command to start the React Devtools. It doesn't work if you install it as a browser extension.
 
-> pnpx react-devtools
+```bash
+pnpx react-devtools
+```
 
 And start the development by the following command:
 
-> pnpx dev --profile
+```bash
+pnpx dev --profile
+```
 
 ## Contribute your working
 

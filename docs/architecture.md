@@ -3,16 +3,12 @@ author: Jack-Works
 maintainer:
   - Jack-Works
   - Septs
+sidebar_position: 10
 ---
 
 # Architecture
 
-![WIP](https://img.shields.io/badge/status-wip-orange.svg?style=flat-square)
-
-> This document describes the Mask Network protocols, the subsystems,
-> the interfaces, and how it all fits together.
-> It delegates non-interface details to other specs as much as possible.
-> This is meant as a top-level view of the protocol and how the system fits together.
+This document describes the Mask Network protocols, the subsystems, the interfaces, and how it all fits together. It delegates non-interface details to other specs as much as possible. This is meant as a top-level view of the protocol and how the system fits together.
 
 ## Subsystems
 
