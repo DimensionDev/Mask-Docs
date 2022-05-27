@@ -7,7 +7,7 @@ sidebar_position: 100
 
 # FAQ
 
-## How to remove unused locale fields?
+## How to remove unused locale keys?
 
 You can you the command from the `locale-kit`.
 
@@ -15,11 +15,27 @@ You can you the command from the `locale-kit`.
  npx gulp locale-kit --remove-unused-keys
 ```
 
+## How to regenerate locale keys?
+
+```bash
+# create locales/ folders according to `.i18n-codegen.json`
+npx gulp sync-languages
+
+# regenerate i18n keys
+npx gulp i18n-codegen
+```
+
+## The `pnpm-lock.yaml` not working on GitHub CI.
+
+```bash
+npx gulp fix-localfile
+```
+
 ## How to resolve merge conflicts in `pnpm-lock.yaml`?
 
 Merge the target branch into yours and never mind those conflicts in `pnpm-lock.yaml`. And checkout the file to be the one on the target branch to revert changes your branch took in. Then run `pnpm install` to up the lockfile to date.
 
-E.g., your `feat/fantasy` branch conflicts with `develop` branch.
+E.g., your `feat/fantasy` branch conflicts with the `develop` branch.
 
 ```bash
 > git branch --show-current
@@ -38,7 +54,7 @@ feat/fantasy
 ## Why my Git hooks don't work?
 
 ```bash
-npx husky install # on project root directory
+npx husky install # on the project root directory
 ```
 
 ## How to fix cspell errors in CI?
@@ -67,8 +83,8 @@ DO NOT remove `<StrictMode />`.
 | Name                          | Description                                                             |
 | ----------------------------- | ----------------------------------------------------------------------- |
 | MaskNetwork.base.zip          | The default build, currently is the same as the Chromium build.         |
-| MaskNetwork.chromium-beta.zip | Build for Chromium based browsers with some insider features turned on. |
-| MaskNetwork.chromium.zip      | Build for Chromium based browsers                                       |
+| MaskNetwork.chromium-beta.zip | Build for Chromium-based browsers with some insider features turned on. |
+| MaskNetwork.chromium.zip      | Build for Chromium-based browsers                                       |
 | MaskNetwork.firefox.zip       | Build for Firefox                                                       |
 | MaskNetwork.gecko.zip         | Build for Android native Mask app                                       |
 | MaskNetwork.iOS.zip           | Build for iOS native Mask app                                           |
@@ -86,7 +102,7 @@ You can download these builds in two places.
 
 ## How to resolve "No CORS Headers" problem
 
-Please contact the service maintainer to add CORS headers, the extension will send requests in following origins:
+Please contact the service maintainer to add CORS headers, the extension will send requests in the following origins:
 
 | Browser  | Origin                                              |
 | -------- | --------------------------------------------------- |
@@ -111,8 +127,4 @@ fetch('https://cors.r2d2.to/?=https://api.com')
 
 ## How to clear the local settings?
 
-Open the background.html of the extension and execute the following scripts in the console.
-
-```js
-browser.storage.local.clear()
-```
+Open the background.html of the extension and execute the fol

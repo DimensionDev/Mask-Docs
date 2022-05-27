@@ -3,13 +3,16 @@ author: Jack-Works
 maintainer:
   - Jack-Works
   - Septs
+sidebar_position: 0
 ---
 
-# Plugin Development Guide
+# Overview
 
-## Run
+## Setup
 
-> npx gulp new-pkg
+```bash
+npx gulp new-pkg
+```
 
 To create a new plugin
 

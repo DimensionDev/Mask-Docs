@@ -1,21 +1,19 @@
-# EVM Chain Integration
+# Ethereum-Compatible Chain
 
-It's easy to integrate an EVM-compatible chain into Mask Network. After you add a new `ChainId` and `NetworkType` in `packages/web3-shared/evm/types/index.ts`. You can follow the TypeScript compiler. By fixing these errors, the integration progress will keep moving forward. Here is a complete instruction list to ensure you wouldn't miss anything.
+This tutorial guides you to integrate a new EVM chain.
+
+After you add a new `ChainId` and `NetworkType` in `packages/web3-shared/evm/types/index.ts`. You can follow the TypeScript compiler. By fixing these errors, the integration progress will keep moving forward. Here is a complete instruction list to ensure you wouldn't miss anything.
 
 ## Integration Instructions
 
-### Setup Metadata
+### Metadata
 
-- [ ] Add a logo image
-  - `packages/mask/src/plugins/EVM/assets/`
-- [ ] Add metadata data
-  - `packages/web3-shared/evm/assets/chains.json`
-- [ ] Add an HTTP RPC node
-  - `packages/web3-constants/evm/rpc.json`
-- [ ] Set network descriptor
-  - `PLUGIN_NETWORKS` in `packages/mask/src/plugins/EVM/constants.ts`
+- [ ] Add the network logo in `packages/web3-shared/evm/assets/`.
+- [ ] Add metadata data in `packages/web3-shared/evm/constants/chains.json`
+- [ ] Add an HTTP RPC node in `packages/web3-constants/evm/rpc.json`.
+- [ ] Set network descriptor `packages/mask/src/plugins/EVM/constants.ts`
 
-### Setup External APIs
+### External APIs
 
 Mask Network fetches on-chain data from various data sources. Therefore, you can configure the identification data of the chain on those providers.
 
@@ -30,19 +28,19 @@ Mask Network fetches on-chain data from various data sources. Therefore, you can
 
 - <https://api.coingecko.com/api/v3/asset_platforms>
 
-### Web3 Constants Compile Config
+### Web3 Constants
 
 Add the chain name to `compileConstants()` in `packages/web3-constants/compile-constants.ts`.
 
-### Token List
+#### Token List
 
-The team maintains a token list <https://github.com/DimensionDev/Mask-Token-List>. So free feel to create one for the chain. And add the token list link to `packages/web3-constants/evm/token-list.json`.
+The team maintains a token list <https://github.com/DimensionDev/Mask-Token-Lists>. So free feel to create one for the chain. And add the token list link to `packages/web3-constants/evm/token-list.json`.
 
-### Token Icon
+#### Token Icon
 
 The token icon could be read from the token list. Or in case of a network problem from a fallback link. Add the fallback links into `packages/web3-constants/evm/token-asset-base-url.json`.
 
-### DEX
+#### DEX
 
 Mask Network has integrated Uniswap V2 and Uniswap V3 into the trader plugin. If the DEX of the chain is a fork from them can be easily configured. Learn more: `packages/web3-constants/evm/trader.json`.
 
@@ -53,19 +51,26 @@ For API-based DEX, please ref to how other DEXes integrated:
 | DODO      | <https://github.com/DimensionDev/Maskbook/pull/3882> |
 | OpenOcean | <https://github.com/DimensionDev/Maskbook/pull/5198> |
 
-### Deploy Contracts
+#### Contracts
 
-If there is no one deployed [these contracts](https://github.com/DimensionDev/misc_smart_contract) on the chain. Please contact the team.
+Rise an issue [here](https://github.com/DimensionDev/Maskbook/issues/new?assignees=DimensionDev%2Fdev-smartcontract&labels=&template=evm.md&title=%5BEVM+Chain%5D+Request+to+deploy+contracts+on+) to request to deploy contracts. After the team deployed contracts please update the following constants.
 
-- [ ] Multicall Contract
-- [ ] BalanceChecker
-- [ ] Other contracts from the Mask team
++ `packages/web3-constants/evm/red-packet.json`
+  + `HAPPY_RED_PACKET_ADDRESS_V4`
+  + `HAPPY_RED_PACKET_ADDRESS_V4_BLOCK_HEIGHT`
++ `packages/web3-constants/evm/ito.json`
+  + `ITO2_CONTRACT_ADDRESS`
+  + `ITO2_CONTRACT_CREATION_BLOCK_HEIGHT`
+  + `DEFAULT_QUALIFICATION2_ADDRESS`
++ `packages/web3-constants/evm/ethereum.json`
+  + `BALANCE_CHECKER_ADDRESS`
+  + `MULTICALL_ADDRESS`
 
 ### Translate JSON-RPC
 
 For a chain that follows a different JSON-RPC protocol with the [Ethereum](https://eth.wiki/json-rpc/API), a transactor is used to `encode` and `decode` each request and make the chain just like an EVM-compatible one.
 
-E.g., the CELO chain can pay the transaction fee with non-native tokens. It supports to use [`feeCurrency`](https://docs.celo.org/celo-codebase/protocol/transactions/erc20-transaction-fees) field to set the token address, which doesn't exist in the original [`eth_sendTransaction`](https://eth.wiki/json-rpc/API#eth_sendtransaction) payload. You can fulfill this requirement by a transactor without altering any JSON-RPC facilities.
+E.g., the CELO chain can pay the transaction fee with non-native tokens. It supports to use [`feeCurrency`](https://docs.celo.org/celo-codebase/protocol/transactions/erc20-transaction-fees) field to set the token address, which doesn't exist in the original [`eth_sendTransaction`](https://eth.wiki/json-rpc/API#eth_sendtransaction) payload.
 
 ```ts
 class CeloTranslator extends Base {

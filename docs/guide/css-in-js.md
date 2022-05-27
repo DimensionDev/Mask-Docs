@@ -5,7 +5,7 @@ maintainer:
   - Septs
 ---
 
-# CSS in JS Guide
+# CSS in JS
 
 ## General guides
 

@@ -1,6 +1,6 @@
 {
-    "label": "Plugin Infra",
-    "position": 30,
+    "label": "Tutorial",
+    "position": 20,
     "link": {
       "type": "generated-index",
       "description": "The fundimental APIs for Mask Network plugins."
