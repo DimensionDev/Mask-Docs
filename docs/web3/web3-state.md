@@ -19,6 +19,7 @@ Let's take more details about states. You can learn each of them in the rest doc
 | `Transaction` | For recording recently sent transactions. |
 | `TransactionFormatter` | For formatting transactions into human-readable messages. |
 | `TransactionWatcher` | For reporting transaction state. |
+| [`Provider`](./provider.md) | A aggregation of all supported wallet provoders. |
 | [`Connection`](./connection.md) | Build connections with wallet providers. |
 | `Wallet` | Access wallets from the kernel indexDB of Mask Network. |
 | [`Hub`](./hub.md) | For standardizing how to access various third-party services build for the network. |
