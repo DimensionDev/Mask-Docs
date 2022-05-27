@@ -1,4 +1,4 @@
-# Internationalization Guide
+# Internationalization
 
 [![Crowdin](https://badges.crowdin.net/mask-network/localized.svg)](https://crowdin.com/project/mask-network)
 

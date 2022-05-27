@@ -1,4 +1,4 @@
-# Bounty Development Guide
+# Bounty Development
 
 Hi, Awesome people! Welcome to start a bounty task on Mask Network.
 
