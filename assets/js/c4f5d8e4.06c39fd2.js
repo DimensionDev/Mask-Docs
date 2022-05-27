@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmask_docs=self.webpackChunkmask_docs||[]).push([[195],{2841:function(e,t,n){n.r(t),n.d(t,{default:function(){return c}});var s=n(7294),u=n(6775);function c(){return s.createElement(u.l_,{to:"/docs/setup"})}}}]);
