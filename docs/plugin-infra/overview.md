@@ -89,7 +89,3 @@ you should render some UI to reveal the information in the metadata and allow th
 Notice please treat the metadata you received as non trustable data,
 make sure you have validated the formats and the data range.
 We provided a utility to read the data from the post and validate it with JSON schema.
-
-## Form guide
-
-If you want to create a form in your plugin, please follow [Form guide](form-guide.md)

@@ -6,7 +6,7 @@ We use [`react-hook-form`](https://react-hook-form.com/) and [`zod`](https://git
 
 ### 1. Use `zod` to create form field schema
 
-You can set error message with i18n, you can read this file to learn about [i18n](i18n-guide.md)
+You can set error message with i18n, you can read this file to learn about [i18n](internationalization.md)
 
 ```tsx
 import { z as zod } from 'zod'
