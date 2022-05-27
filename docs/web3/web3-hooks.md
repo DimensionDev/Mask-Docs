@@ -14,7 +14,7 @@ export enum NetworkPluginID {
 }
 ```
 
-A network plugin will create a `Web3State` that encapsulates the network abilities. There are public shared `Web3State` interfaces that every network plugin should implement by itself. It means that all networks have the same API exported for their consumers, conversely speaking, a consumer can support another network without a code change. The only thing is to change the `NetworkPlugin` to the expected one.
+A network plugin will create a `Web3State` that encapsulates the network abilities. There are public shared `Web3State` interfaces that every network plugin should implement by itself. It means that all networks have the same API exported for their consumers, conversely speaking, a consumer can support another network without a code change. The only thing is to change the `NetworkPlugin` to the expected one. It makes all networks use one set of hooks.
 
 On the React UI side, a context `PluginsWeb3Context` collects all `Web3State` into an object and provides UI components to access any network states with React hooks.
 
@@ -42,7 +42,7 @@ const { value: name = 'UNKNOWN' } = useAsync(async () => {
 })
 ```
 
-The access state is boring and lengthy from the start of `useWeb3State()`. Since then, there have been a bunch of hooks existed to reduce labor work. Here is a simplified version.
+To access state from the start of `useWeb3State()` is boring and lengthy. Since then, there have been a bunch of hooks existed to reduce labor work. Here is a simplified version of the previous one.
 
 ```ts
 const { value: name = 'UNKNOWN' } = useLookupAddress(NetwrokPluginID.PLUGIN_ID, address)
