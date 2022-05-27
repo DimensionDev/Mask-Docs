@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: nodeModules-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        run: npm i
+      - name: Build website
+        run: npm run build
