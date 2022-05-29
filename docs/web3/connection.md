@@ -8,7 +8,7 @@ When we say create a connection with the network, it means we got a way to send 
 The `ConnectionState` implements the ability to interact with a blockchain network.
 
 ```ts
-export interface ConnectionState<Web3, Web3Provider, Web3ConnectionOptions, Web3Connection> {
+export interface ConnectionState {
     /** Get web3 SDK instance */
     getWeb3?: (options?: Web3ConnectionOptions) => Promise<Web3>
     /** Get web3 provider instance */
@@ -29,18 +29,7 @@ The primary task of this state is to implement a `Connection` for the network. I
 Paste a snippet from the source code.
 
 ```ts
-export interface Connection<
-    ChainId,
-    SchemaType,
-    ProviderType,
-    Signature,
-    Block,
-    Transaction,
-    TransactionDetailed,
-    TransactionSignature,
-    Web3,
-    Web3ConnectionOptions = ConnectionOptions<ChainId, ProviderType, Transaction>,
-> {
+export interface Connection {
     /** Get the latest block number. */
     getBlockNumber(options?: Web3ConnectionOptions): Promise<number>
     /** Sign message */
