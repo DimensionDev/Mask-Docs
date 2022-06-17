@@ -1,4 +1,4 @@
 ---
-title: Third-Party Data Hub
+title: Hub
 sidebar_position: 5
 ---
