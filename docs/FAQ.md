@@ -127,4 +127,10 @@ fetch('https://cors.r2d2.to/?=https://api.com')
 
 ## How to clear the local settings?
 
-Open the background.html of the extension and execute the fol
+Open the background.html of the extension and execute the following scripts in the console.
+
+```js
+browser.storage.local.clear()
+```
+
+## How to use a testnet?
