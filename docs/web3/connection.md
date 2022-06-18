@@ -3,7 +3,7 @@ title: Connection
 sidebar_position: 3
 ---
 
-To participate the network, we need to send request and receive response with a node in the network. We have tools like [`ethers.js`](https://docs.ethers.io/v5/), [`web3.js`](https://web3js.readthedocs.io/) and [`FCL`](https://docs.onflow.org/fcl/) helps to compose request paylaod and decode response.
+To participate in the network, we need to send requests and receive responses from a node in the network. We have tools like [`ethers.js`](https://docs.ethers.io/v5/), [`web3.js`](https://web3js.readthedocs.io/) and [`FCL`](https://docs.onflow.org/fcl/) helps to compose request payloads and decode responses.
 
 ### Overview
 
@@ -39,7 +39,7 @@ interface Connection {
 
 With a `Connection`, we can do:
 
--   _To create a SDK instance._
+-   _To create an SDK instance._
 -   _To get the instant block number._
 -   _To sign a plain message._
 -   _To send a transaction and wait for confirmation._
@@ -110,7 +110,7 @@ Get Web3 SDK instance of the currently selected network.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -153,7 +153,7 @@ For the network that doesn't have a provider protocol, we borrow the definition 
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -183,11 +183,11 @@ Build connection.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
-`Promise<Account<ChainId>>` The account object contains connected account address and sub-network chain id.
+`Promise<Account<ChainId>>` The account object contains the connected account address and sub-network chain id.
 
 #### Example
 
@@ -205,7 +205,7 @@ Break connection.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -227,7 +227,7 @@ Get gas price.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -247,7 +247,7 @@ Get schema type of given token address.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -267,7 +267,7 @@ Get a native fungible token.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -287,7 +287,7 @@ Get a fungible token.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -308,11 +308,11 @@ getNonFungibleToken(
 ): Promise<NonFungibleToken<ChainId, SchemaType>>
 ```
 
-Get an non-fungible token.
+Get a non-fungible token.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -334,15 +334,15 @@ getNonFungibleTokenOwnership(
 ): Promise<boolean>
 ```
 
-Detect if an non-fungible token is owned by a specific account.
+Detect if a non-fungible token is owned by a specific account.
 
 #### Parameters
 
 1. address - `string`. The token program address.
 1. tokenId - `string`. The id of the token.
-1. owner - `string`. The owner address to be detected.
+1. owner - `string`. The owner's address for detection
 1. schema - `SchemaType`. An optional token schema type.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -366,11 +366,11 @@ getNonFungibleTokenMetadata(
 ): Promise<NonFungibleTokenMetadata<ChainId>>
 ```
 
-Get an non-fungible token.
+Get a non-fungible token.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -390,11 +390,11 @@ getNonFungibleTokenContract(
 ): Promise<NonFungibleTokenContract<ChainId, SchemaType>>
 ```
 
-Get an non-fungible token contract.
+Get a non-fungible token contract.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -414,11 +414,11 @@ getNonFungibleTokenCollection(
 ): Promise<NonFungibleTokenCollection<ChainId>>
 ```
 
-Get an non-fungible token collection.
+Get a non-fungible token collection.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -434,15 +434,15 @@ Get an non-fungible token collection.
 getNativeTokenBalance(initial?: Web3ConnectionOptions): Promise<string>
 ```
 
-Get native fungible token balance. Alias of `getBalance`.
+Get a native fungible token balance. Alias of `getBalance`.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
-`Promise<string>` The balance in hex string.
+`Promise<string>` The balance as a hex string.
 
 #### Example
 
@@ -460,11 +460,11 @@ Get fungible token balance.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
-`Promise<string>` The balance in hex string.
+`Promise<string>` The balance as a hex string.
 
 #### Example
 
@@ -478,18 +478,18 @@ const balance = await connection.getFungibleTokenBalance()
 getNonFungibleTokenBalance(address: string, tokenId?: string, schema?: SchemaType, initial?: Web3ConnectionOptions): Promise<string>
 ```
 
-Get non-fungible token balance.
+Get a non-fungible token balance.
 
 #### Parameters
 
 1. address - `string`. The token program address.
 1. tokenId - `string`. The id of the token.
 1. schema - `SchemaType`. An optional token schema type.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
-`Promise<string>` The balance in hex string.
+`Promise<string>` The balance as a hex string.
 
 #### Example
 
@@ -508,7 +508,7 @@ Get fungible token balance.
 #### Parameters
 
 1. listOfAddress - `string[]`.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -527,11 +527,11 @@ getNonFungibleTokensBalance(
 ): Promise<Record<string, string>>
 ```
 
-Get non-fungible token balance.
+Get a non-fungible token balance.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -551,7 +551,7 @@ Get the currently connected account.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -569,11 +569,11 @@ const account = await connection.getAccount()
 getChainId(initial?: Web3ConnectionOptions): Promise<ChainId>
 ```
 
-Get the currently chain id.
+Get the current chain id.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -596,7 +596,7 @@ Get a specific block.
 #### Parameters
 
 1. no - `number`. To specific the number of the block.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -622,7 +622,7 @@ Get the latest block number.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -640,11 +640,11 @@ const blockNumber = await connection.getBlockNumber()
 getBlockTimestamp(initial?: Web3ConnectionOptions): Promise<number>
 ```
 
-Get the latest block unix timestamp.
+Get the latest block UNIX timestamp.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -669,11 +669,11 @@ Get the latest balance of the account.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
-`Promise<string` The balance in hex string.
+`Promise<string` The balance as a hex string.
 
 #### Example
 
@@ -695,7 +695,7 @@ Get the detailed information of a transaction.
 #### Parameters
 
 1. id - `string`. The id of the transaction.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -726,7 +726,7 @@ NOT_DEPEND(START) -> FAILED(END)
 #### Parameters
 
 1. id - `string`. The id of a transaction.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -748,7 +748,7 @@ Get the latest transaction nonce.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -769,7 +769,7 @@ Get the transaction receipt.
 #### Parameters
 
 1. id - `string`. The id of the transaction.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -787,12 +787,12 @@ const receipt = await connection.getTransactionReceipt(id)
 getCode(address: string, initial?: Web3ConnectionOptions): Promise<string>
 ```
 
-Get the source code of a on-chain program.
+Get the source code of an on-chain program.
 
 #### Parameters
 
 1. address - `string`. The address of the on-chain program.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -817,7 +817,7 @@ Switch to a sub-network.
 #### Parameters
 
 1. chainId - `ChainId`. The chain id of the sub-network.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -844,8 +844,8 @@ Sign data using the currently selected account. This account could be overrided 
 #### Parameters
 
 1. message - `string`. Data to sign. A UTF8 string.
-1. signType - `string`. Switch between multiple sign algorithms. The default value for EVM is `personalSign` and support typed data sign (v4) with `typedDataSign`.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. signType - `string`. Switch between multiple sign algorithms. The default value for EVM is `personalSign` and supports typed data sign (v4) with `typedDataSign`.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -874,7 +874,7 @@ Verify a message signature.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -905,7 +905,7 @@ Transfer fungible token to.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -932,7 +932,7 @@ Transfer non-fungible token to.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -952,7 +952,7 @@ Sign a transaction. Most time, a transaction signature is a plain string.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -974,11 +974,11 @@ Sign multiple transactions.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
-`Promise<Array<TransactionSignature>>`. An array of signature transaction signature.
+`Promise<Array<TransactionSignature>>`. An array of transaction signatures.
 
 #### Example
 
@@ -996,7 +996,7 @@ Query a transaction.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -1016,7 +1016,7 @@ Send a transaction and wait for mining.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -1036,7 +1036,7 @@ Send a signed transaction.
 
 #### Parameters
 
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -1049,16 +1049,16 @@ Send a signed transaction.
 ### replaceTransaction
 
 ```ts
-replaceTransaction(hash: string, transaction: Transaction, initial?: Web3ConnectionOptions): Promise<void>
+replaceTransaction(id: string, transaction: Transaction, initial?: Web3ConnectionOptions): Promise<void>
 ```
 
 To replace a sent transaction before it gets confirmation.
 
 #### Parameters
 
-1. hash - `string`. The id of the transaction to be replaced.
+1. id - `string`. The id of the transaction to be replaced.
 1. transaction - `Transaction`. The substitute transaction.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
@@ -1071,13 +1071,13 @@ To replace a sent transaction before it gets confirmation.
 ```
 
 ```ts
-const hash = await connection.sendTransaction({
+const id = await connection.sendTransaction({
     /* ... */
     gasPrice: toHex(300000),
 })
 
-// replace the previous sent transaction with a higher gasPrice
-await connection.replaceTransation(hash, {
+// replace the previously sent transaction with a higher gasPrice
+await connection.replaceTransation(id, {
     /* ... */
     gasPrice: toHex(400000),
 })
@@ -1086,15 +1086,15 @@ await connection.replaceTransation(hash, {
 ### cancelTransaction
 
 ```ts
-cancelTransaction(hash: string, initial?: Web3ConnectionOptions): Promise<void>
+cancelTransaction(id: string, initial?: Web3ConnectionOptions): Promise<void>
 ```
 
 To cancel a sent transaction before it gets confirmation.
 
 #### Parameters
 
-1. hash - `string`. The id of the transaction to be canceled.
-1. initial - `Web3ConnectionOptions`. An optional options to override the connection settings.
+1. id - `string`. The id of the transaction to be canceled.
+1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
 
