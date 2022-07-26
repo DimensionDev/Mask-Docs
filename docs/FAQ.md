@@ -115,14 +115,14 @@ The Chromium extension has a fixed id, but only on production mode. And the Fire
 /.*-extension:\/\/[^\S]+/
 ```
 
-If you cannot reach the service maintainer another workaround is to use a proxy server to add CORS headers. To enable it try to change the request URL into `https://cors.r2d2.to/?=[url]`.
+If you cannot reach the service maintainer another workaround is to use a proxy server to add CORS headers. To enable it try to change the request URL into `https://cors.r2d2.to/?[url]`.
 
 ```ts
 // before
 fetch('https://api.com')
 
 // after
-fetch('https://cors.r2d2.to/?=https://api.com')
+fetch('https://cors.r2d2.to/?https://api.com')
 ```
 
 ## How to clear the local settings?
