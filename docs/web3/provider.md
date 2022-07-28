@@ -1,6 +1,6 @@
 ---
 title: Provider
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 We assume a wallet provider is an application available as a client-side application or server-side service. It handles requests from decentralized applications and provides APIs to create an interactable instance (`Web3`) with the official SDK. A network specification also defines the APIs as a protocol (`Web3Provider`) that all wallet providers should implement them.
@@ -27,7 +27,7 @@ const web3 = useWeb3(NetworkPluginID.PLUGIN_EVM)
 const web3Provider = useWeb3Provider(NetworkPluginID.PLUGIN_EVM)
 ```
 
-Integrating a wallet provider should implement the `WalletProvider` interface. We assume there is lazy progress that a wallet provider will need to do the preparation, and it can switch to a specific sub-network. It also creates an SDK instance and a provider instance that implements the provider protocol of that network.
+Integrating a wallet provider should implement the `WalletProvider` interface. We assume there is lazy progress that a wallet provider will need to do the preparation, and it can switch to a specific subnetwork. It also creates an SDK instance and a provider instance that implements the provider protocol of that network.
 
 ```ts
 export interface WalletProvider<ChainId, ProviderType, Web3Provider, Web3> {
@@ -46,7 +46,7 @@ export interface WalletProvider<ChainId, ProviderType, Web3Provider, Web3> {
 }
 ```
 
-The `ProviderState` takes management of multiple wallet providers. It tracks the currently selected account address and in which sub-network the account stays. Of course, we can access them with hooks.
+The `ProviderState` takes management of multiple wallet providers. It tracks the currently selected account address and in which subnetwork the account stays. Of course, we can access them with hooks.
 
 ```ts
 // Get the currently connected account on the visiting page
