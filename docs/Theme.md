@@ -42,7 +42,7 @@ If the colorManipulation provided by mui doesn't meet your needs, we also have [
 
 ## Components
 
-We have overwritten some mui component styles.  You can preview them via [storybook](https://62e785c29d043a0552e83fdf--compassionate-northcutt-326a3a.netlify.app/storybook-static/theme/?path=/story/atoms-alert--alert) and [figma](https://www.figma.com/file/hu471h4qPHMGElU6XQ1TYd/Mask-UI-kit-3?node-id=0%3A1).
+We have overwritten some mui component styles.  You can preview them via [storybook](https://storybook.mask.io/storybook-static/theme/) and [figma](https://www.figma.com/file/hu471h4qPHMGElU6XQ1TYd/Mask-UI-kit-3?node-id=0%3A1).
 
 So when you want to use `Button`, `InputBase`, `CheckBox` etc. you can refer to the storybook to use these components directly. Avoid writing duplicate style code.
 
