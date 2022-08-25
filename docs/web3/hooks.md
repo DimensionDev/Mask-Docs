@@ -16,7 +16,7 @@ export enum NetworkPluginID {
 
 A network plugin will create a `Web3State` that encapsulates the network abilities. There are public shared `Web3State` interfaces that every network plugin should implement by itself. It means that all networks have the same API exported for their consumers, conversely speaking, a consumer can support another network without a code change. The only thing is to change the `NetworkPlugin` to the expected one. It makes all networks use one set of hooks.
 
-On the React UI side, a context `PluginsWeb3Context` collects all `Web3State` into an object and provides UI components to access any network states with React hooks.
+On the React UI side, a context `PluginsWeb3Context` collects all `Web3State` into an object and provides UI components to access any network states with **React hooks** (In the future, we may provide callable APIs for React-free environment).
 
 ```ts
 // access Web3 abilities of the EVM plugin
@@ -30,30 +30,64 @@ const Web3State = useWeb3State(NetworkPluginID.PLUGIN_FLOW)
 As we know, all React hooks should write in a functional component. Here we omit the component wrapper for demonstrating the concept. In production, they should always stay in components.
 :::
 
-A `Web3State` contains all stuff a network should have. We defined many state interfaces that a network plugin needs to implement. But they are not mandatory. A network plugin can implement the state only if they are supporting that feature. E.g., if a network may lack facilities like ENS on Ethereum, it can choose not to implement the `NameService` state. Because of that, some features of Mask Network which depend on the state will not work.
+In case a plugin only serves a specific network. The `<PluginIDContextProvider />` could be used to set a default `NetworkPluginID`.
+
+```tsx
+<PluginIDContextProvider value={NetworkPluginID.PLUGIN_EVM}>
+    {/* EVM only plugin */}
+    <PluginComponent />
+</PluginIDContextProvider>
+```
+
+:::info
+In the contexted component `PluginComponent`, we don't need to use Web3 hooks with `NetworkPluginID.PLUGIN_EVM` anymore. It always reaches EVM data til another `NetworkPluginID` is given.
+:::
+
+Sometimes, a plugin may need to disconnect with the global state changes. E.g., to implement a UI to only reveal information under a specific subnetwork without really switching to it.
+
+The `<PluginWeb3ContextProvider />` comes to helper. We can specify a plugin-controlled `chainId` with it.
+
+```tsx
+function PluginComponent() {
+    // the global chainId
+    const chainId = useChainId()
+    const [targetChainId, setTargetChainId] = useState(ChainId.Mainnet)
+    return (
+        <PluginWeb3ContextProvider value={{ chainId: targetChainId }}>
+            <Component />
+        </<PluginWeb3ContextProvider>
+    )
+}
+```
+
+:::info
+In the contexted component `Component`, the `useChainId` will priority return the `targetChainId`.
+:::
+
+A `Web3State` contains all stuff a network should have. We defined many interfaces that a network plugin suppose to implement. But they are not mandatory. A network plugin can implement the state only if it supports a specific feature. E.g., if a network may lack facilities like ENS on Ethereum, it can choose not to implement the `NameService` state. Because of that, some features of Mask Network which depend on that interface will not work.
 
 
 ```ts
 const { NameService } = useWeb3State(NetworkPluginID.PLUGIN_ID)
 
 const { value: name = 'UNKNOWN' } = useAsync(async () => {
-    // the NameService could be undefined
+    // the NameService could be undefined, it's not mandatory for every network to implement
     return NameService?.lookup(address) 
 })
 ```
 
-To access state from the start of `useWeb3State()` is boring and lengthy. Since then, there have been a bunch of hooks existed to reduce labor work. Here is a simplified version of the previous one.
+Always access state from the start of `useWeb3State()` is boring and lengthy. Since then, there have been a bunch of hooks existed to reduce labor work. Here is a simplified version of the previous one.
 
 ```ts
 const { value: name = 'UNKNOWN' } = useLookupAddress(NetwrokPluginID.PLUGIN_ID, address)
 ```
 
 :::info
-All Web3 hooks reserved the first parameter for `NetworkPluginID`. It's omittable if the rest parameters are not necessary. It will take the plugin ID of the currently selected network as a fallback.
+All Web3 hooks reserved the first parameter for `NetworkPluginID`. It's omittable if the rest parameters are not necessary. It will take the plugin ID of the currently selected network as a fallback. What's more, we can use `PluginIDContextProvider` to override this behavior.
 :::
 
 
-As we know, the extension maintains three kinds of pages. It includes a background page, some extension pages (popups and dashboard), and multiple content pages. Yeah, each of them will create a `PluginsWeb3Context`. And they are sharing the same copy of data. If you alter the state of the context on the content page, it will finally sync to the rest pages. These UI components can update automatically, although they stay on different pages.
+As we know, the extension maintains three kinds of pages. It includes a background page, some extension pages (popups and dashboard), and multiple content pages. Yeah, each of them will create a `PluginsWeb3Context`. And they are sharing the same copy of data. If we alter the state of the context on the content page, it will finally sync to the rest pages. These UI components can update automatically, although they stay on different pages.
 
 Suppose we have an address book UI running on the content page. The user could add a new address to the book by clicking somewhere on it.
 
@@ -62,6 +96,7 @@ const account = useAccount(NetworkPluginID.PLUGIN_ID)
 const { AddressBook } = useWeb3State(NetworkPluginID.PLUGIN_ID)
 
 const onAddAddress = useCallback(async (address: string) => {
+    // add a new address into the AddressBook state
     await AddressBook?.addAddress(account, addresss)
 })
 ```
