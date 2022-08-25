@@ -57,7 +57,7 @@ We could alter the connection with the `options` parameter in actions. It gives 
 
 ```ts
 interface ConnectionOptions<ChainId, ProviderType, Transaction> {
-    /** Designate the sub-network id of the transaction. */
+    /** Designate the subnetwork id of the transaction. */
     chainId?: ChainId
     /** Designate the signer of the transaction. */
     account?: string
@@ -187,7 +187,7 @@ Build connection.
 
 #### Returns
 
-`Promise<Account<ChainId>>` The account object contains the connected account address and sub-network chain id.
+`Promise<Account<ChainId>>` The account object contains the connected account address and subnetwork chain id.
 
 #### Example
 
@@ -600,7 +600,7 @@ Get a specific block.
 
 #### Returns
 
-`Promise<Block | null>` The block object defined in [Types](./web3-types).
+`Promise<Block | null>` The block object defined in [Types](./types).
 
 #### Example
 
@@ -699,7 +699,7 @@ Get the detailed information of a transaction.
 
 #### Returns
 
-`Promise<Transaction>` The transaction object defined in [Types](./web3-types.md).
+`Promise<Transaction>` The transaction object defined in [Types](./types.md).
 
 #### Example
 
@@ -773,7 +773,7 @@ Get the transaction receipt.
 
 #### Returns
 
-`Promise<TransactionReceipt>` The tranaction receipt object defined in [Types](./web3-types.md).
+`Promise<TransactionReceipt>` The tranaction receipt object defined in [Types](./types.md).
 
 #### Example
 
@@ -812,11 +812,11 @@ const code = await connection.getCode('0x')
 switchChain?: (chainId: ChainId, initial?: Web3ConnectionOptions) => Promise<void>
 ```
 
-Switch to a sub-network.
+Switch to a subnetwork.
 
 #### Parameters
 
-1. chainId - `ChainId`. The chain id of the sub-network.
+1. chainId - `ChainId`. The chain id of the subnetwork.
 1. initial - `Web3ConnectionOptions`. An optional object to override the connection settings.
 
 #### Returns
@@ -956,7 +956,7 @@ Sign a transaction. Most time, a transaction signature is a plain string.
 
 #### Returns
 
-`Promise<TransactionSignature>`. An transaction signature defined in [Types](./web3-types).
+`Promise<TransactionSignature>`. An transaction signature defined in [Types](./types).
 
 #### Example
 
