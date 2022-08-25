@@ -78,7 +78,7 @@ The `ProviderDescriptor` defines a wallet provider.
 
 ### getDefaultChainId
 
-Get the chain ID of the default subnetwork between the same kind of blockchains. E.g., The Ethereum Mainnet (`ChainId.Mainnet`) is the default subnetwork in many EVM blockchains.
+A network plugin should set a  e.g., The Ethereum Mainnet Network (`ChainId.Mainnet`) is the default network of EVM-compatible networks.
 
 ```ts
 const defaultChainId = getDefaultChainId(): ChainId
@@ -99,7 +99,7 @@ const defaultChainId = Others?.getDefaultChainId()
 
 ### getDefaultNetworkType
 
-Get the network type of the default subnetwork between the same kind of blockchains. E.g., The Ethereum Mainnet (`NetworkType.Ethereum`) is the default subnetwork in many EVM blockchains.
+Get the network type of the default subnetwork, e.g., The Ethereum Mainnet (`NetworkType.Ethereum`) is the default subnetwork in many EVM blockchains.
 
 #### Returns
 
