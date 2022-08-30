@@ -25,9 +25,9 @@ npx gulp sync-languages
 npx gulp i18n-codegen
 ```
 
-## How to fix ERR_PNPM_FETCH_401?
+## How to fix `ERR_PNPM_FETCH_401`?
 
-It happens while installing @dimensiondev packages from GitHub package. To resolve this we need to [create a GitHub access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) and add it in the `.npmrc` file.
+It happens while installing [`@dimensiondev/*` packages](https://github.com/orgs/DimensionDev/packages) from GitHub package. To resolve this we need to [create a GitHub access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) and add it in the `.npmrc` file.
 
 **Remember to enable the **read:packages** permission for the access token.**
 
