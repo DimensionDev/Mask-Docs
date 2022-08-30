@@ -25,6 +25,18 @@ npx gulp sync-languages
 npx gulp i18n-codegen
 ```
 
+## How to fix `ERR_PNPM_FETCH_401`?
+
+It happens while installing [`@dimensiondev/*`](https://github.com/orgs/DimensionDev/packages) packages from the GitHub package. To resolve this, we need to [create a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) and add it to the `.npmrc` file.
+
+**Remember to enable the _read:packages_ permission for the access token.**
+
+With the access token, add the below statement in `~/.npmrc` to avoid tracking it with `git` and unintentionally pushing it to public space.
+
+```
+//npm.pkg.github.com/:_authToken=[TOKEN]
+```
+
 ## The `pnpm-lock.yaml` not working on GitHub CI.
 
 ```bash
