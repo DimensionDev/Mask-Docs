@@ -41,7 +41,7 @@ In case a plugin only serves a specific network. The `<NetworkContextProvider />
 </NetworkContextProvider>
 ```
 
-In the contexted component `PluginComponent`, we don't have to use Web3 hooks with `NetworkPluginID.PLUGIN_EVM` anymore. It always reaches EVM data til another `NetworkPluginID` is given.
+In the contexted component `<PluginComponent />`, we don't have to use Web3 hooks with `NetworkPluginID.PLUGIN_EVM` anymore. It always reaches EVM data til another `NetworkPluginID` is given.
 
 ```ts
 function PluginComponent({ expectedPluginID }: { expectedPluginID: NetworkPluginID }) {
@@ -61,7 +61,19 @@ Sometimes, a plugin may need to ignore the global state changes. E.g., to implem
 The `<ChainContextProvider />` comes to helper. We can specify a plugin-controlled `chainId` with it.
 
 ```tsx
-function PluginComponent() {
+function PluginComponent({ expectedChainId }: { expectedChainId: ChainId }) {
+    return (
+        <ChainContextProvider value={{ chainId: expectedChainId }}>
+            <Component />
+        </<ChainContextProvider>
+    )
+}
+```
+
+In the contexted component `<Component />`, we use `useChainId()` to access the global chain ID, at the same time, the contexted chain ID as well accessable with `useChainContextProvider()`
+
+```tsx
+function Component() {
     // the global chain id (readonly)
     const globalChainId = useChainId()
 
@@ -71,17 +83,11 @@ function PluginComponent() {
     const onSwitchChainId = (nextChainId) => {
         setChaniId(nextChainId)
     }
-
-    return (
-        <ChainContextProvider value={{ chainId }}>
-            <Component />
-        </<ChainContextProvider>
-    )
 }
 ```
 
 :::info
-In the contexted component `Component`, the `useChainId` will priority return the `targetChainId`.
+Not only for chain ID, but also the `<ChainContextProvider />` supports setting context account, provider type, and, network type.
 :::
 
 ### Web3 Hooks
