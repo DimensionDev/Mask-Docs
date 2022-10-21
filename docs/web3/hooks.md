@@ -30,6 +30,8 @@ const Web3State = useWeb3State(NetworkPluginID.PLUGIN_FLOW)
 As we know, all React hooks should write in a functional component. Here we omit the component wrapper for demonstrating the concept. In production, they should always stay in components.
 :::
 
+### `<NetworkContextProvider />`
+
 In case a plugin only serves a specific network. The `<NetworkContextProvider />` could be used to set a default `NetworkPluginID`.
 
 ```tsx
@@ -39,9 +41,20 @@ In case a plugin only serves a specific network. The `<NetworkContextProvider />
 </NetworkContextProvider>
 ```
 
-:::info
-In the contexted component `PluginComponent`, we don't need to use Web3 hooks with `NetworkPluginID.PLUGIN_EVM` anymore. It always reaches EVM data til another `NetworkPluginID` is given.
-:::
+In the contexted component `PluginComponent`, we don't have to use Web3 hooks with `NetworkPluginID.PLUGIN_EVM` anymore. It always reaches EVM data til another `NetworkPluginID` is given.
+
+```ts
+function PluginComponent({ expectedPluginID }: { expectedPluginID: NetworkPluginID }) {
+    // the contexted plugin ID (read & write)
+    const { pluginID, setPluginID } = useNetworkContextProvider(expectedPluginID)
+
+    const onSwitchPluginID = (nextPluginID) => {
+        setPluginID(nextPluginID)
+    }
+}
+```
+
+### `<ChainContextProvider />`
 
 Sometimes, a plugin may need to ignore the global state changes. E.g., to implement a UI to only reveal information under a specific subnetwork without really switching to it.
 
@@ -49,11 +62,18 @@ The `<ChainContextProvider />` comes to helper. We can specify a plugin-controll
 
 ```tsx
 function PluginComponent() {
-    // the global chainId
-    const chainId = useChainId()
-    const [targetChainId, setTargetChainId] = useState(ChainId.Mainnet)
+    // the global chain id (readonly)
+    const globalChainId = useChainId()
+
+    // the contexted chain id (read & write)
+    const { chainId, setChainId }= useChainContextProvider()
+
+    const onSwitchChainId = (nextChainId) => {
+        setChaniId(nextChainId)
+    }
+
     return (
-        <ChainContextProvider value={{ chainId: targetChainId }}>
+        <ChainContextProvider value={{ chainId }}>
             <Component />
         </<ChainContextProvider>
     )
@@ -63,6 +83,8 @@ function PluginComponent() {
 :::info
 In the contexted component `Component`, the `useChainId` will priority return the `targetChainId`.
 :::
+
+### Web3 Hooks
 
 A `Web3State` contains all stuff a network should have. We defined many interfaces that a network plugin suppose to implement. But they are not mandatory. A network plugin can implement the state only if it supports a specific feature. E.g., if a network may lack facilities like ENS on Ethereum, it can choose not to implement the `NameService` state. Because of that, some features of Mask Network which depend on that interface will not work.
 
