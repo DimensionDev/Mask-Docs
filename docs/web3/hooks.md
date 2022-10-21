@@ -16,7 +16,7 @@ export enum NetworkPluginID {
 
 A network plugin will create a `Web3State` that encapsulates the network abilities. There are public shared `Web3State` interfaces that every network plugin should implement by itself. It means that all networks have the same API exported for their consumers, conversely speaking, a consumer can support another network without a code change. The only thing is to change the `NetworkPlugin` to the expected one. It makes all networks use one set of hooks.
 
-On the React UI side, a context `PluginsWeb3Context` collects all `Web3State` into an object and provides UI components to access any network states with **React hooks** (In the future, we may provide callable APIs for React-free environment).
+On the React UI side, UI components can access any network states with **React hooks** (In the future, we may provide callable APIs for React-free environment).
 
 ```ts
 // access Web3 abilities of the EVM plugin
@@ -30,22 +30,22 @@ const Web3State = useWeb3State(NetworkPluginID.PLUGIN_FLOW)
 As we know, all React hooks should write in a functional component. Here we omit the component wrapper for demonstrating the concept. In production, they should always stay in components.
 :::
 
-In case a plugin only serves a specific network. The `<PluginIDContextProvider />` could be used to set a default `NetworkPluginID`.
+In case a plugin only serves a specific network. The `<NetworkContextProvider />` could be used to set a default `NetworkPluginID`.
 
 ```tsx
-<PluginIDContextProvider value={NetworkPluginID.PLUGIN_EVM}>
+<NetworkContextProvider value={NetworkPluginID.PLUGIN_EVM}>
     {/* EVM only plugin */}
     <PluginComponent />
-</PluginIDContextProvider>
+</NetworkContextProvider>
 ```
 
 :::info
 In the contexted component `PluginComponent`, we don't need to use Web3 hooks with `NetworkPluginID.PLUGIN_EVM` anymore. It always reaches EVM data til another `NetworkPluginID` is given.
 :::
 
-Sometimes, a plugin may need to disconnect with the global state changes. E.g., to implement a UI to only reveal information under a specific subnetwork without really switching to it.
+Sometimes, a plugin may need to ignore the global state changes. E.g., to implement a UI to only reveal information under a specific subnetwork without really switching to it.
 
-The `<PluginWeb3ContextProvider />` comes to helper. We can specify a plugin-controlled `chainId` with it.
+The `<ChainContextProvider />` comes to helper. We can specify a plugin-controlled `chainId` with it.
 
 ```tsx
 function PluginComponent() {
@@ -53,9 +53,9 @@ function PluginComponent() {
     const chainId = useChainId()
     const [targetChainId, setTargetChainId] = useState(ChainId.Mainnet)
     return (
-        <PluginWeb3ContextProvider value={{ chainId: targetChainId }}>
+        <ChainContextProvider value={{ chainId: targetChainId }}>
             <Component />
-        </<PluginWeb3ContextProvider>
+        </<ChainContextProvider>
     )
 }
 ```
